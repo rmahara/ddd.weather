@@ -39,8 +39,14 @@ limit 1
                 DataDateLabel.Text = dt.Rows[0]["datadate"].ToString();
                 ConditionLabel.Text = dt.Rows[0]["condition"].ToString();
                 TempetureLabel.Text =
-                    Math.Round(Convert.ToSingle(dt.Rows[0]["temperature"].ToString()), 2) + "Åé";
+                    RoundString(Convert.ToSingle(dt.Rows[0]["temperature"].ToString()), 2) + "Åé";
             }
+        }
+
+        private string RoundString(float value, int decimalPoint) 
+        {
+            var temp = Convert.ToSingle(Math.Round(value, decimalPoint));
+            return temp.ToString("F" + decimalPoint);
         }
     }
 }
