@@ -24,7 +24,7 @@ namespace DDD.Domain.Entities
         public bool IsMousho() 
         {
             // 区分で == 1 で比較するのは非常に悪い実装
-            if (Condition.Value == 1) 
+            if (Condition == Condition.Sunny) 
             {
                 if (Temperature.Value > 30)
                 {
