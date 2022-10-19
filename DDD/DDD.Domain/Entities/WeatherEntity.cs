@@ -13,13 +13,26 @@ namespace DDD.Domain.Entities
         {
             AreaId = areaId;
             DataDate = dataDate;
-            Condition = condition;
+            Condition = new Condition(condition);
             Temperature = new Temperature(temperature);
         }
         public int AreaId { get; }
         public DateTime DataDate { get; }
-        public int Condition { get; }
+        public Condition Condition { get; }
         public Temperature Temperature { get; }
+
+        public bool IsMousho() 
+        {
+            // 区分で == 1 で比較するのは非常に悪い実装
+            if (Condition.Value == 1) 
+            {
+                if (Temperature.Value > 30)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public bool IsOK() 
         {
@@ -32,6 +45,12 @@ namespace DDD.Domain.Entities
             }
 
             return true;
+        }
+
+        public enum Mode 
+        {
+            Auto = 1,
+            None = 2,
         }
     }
 }
