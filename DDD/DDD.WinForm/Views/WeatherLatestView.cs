@@ -21,10 +21,10 @@ namespace DDD.WinForm
             {
                 DataDateLabel.Text = dt.Rows[0]["datadate"].ToString();
                 ConditionLabel.Text = dt.Rows[0]["condition"].ToString();
-                TempetureLabel.Text =
+                TemperatureLabel.Text =
                     CommonFunc.RoundString(
                         Convert.ToSingle(dt.Rows[0]["temperature"].ToString()),
-                        CommonConst.TempetureDecimalPoint) + CommonConst.TempetureUnitName;
+                        CommonConst.TemperatureDecimalPoint) + CommonConst.TemperatureUnitName;
             }
         }
     }

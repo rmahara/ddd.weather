@@ -34,7 +34,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.DataDateLabel = new System.Windows.Forms.Label();
             this.ConditionLabel = new System.Windows.Forms.Label();
-            this.TempetureLabel = new System.Windows.Forms.Label();
+            this.TemperatureLabel = new System.Windows.Forms.Label();
             this.AreaIdTextBox = new System.Windows.Forms.TextBox();
             this.LatestButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -93,14 +93,14 @@
             this.ConditionLabel.TabIndex = 5;
             this.ConditionLabel.Text = "label5";
             // 
-            // TempetureLabel
+            // TemperatureLabel
             // 
-            this.TempetureLabel.AutoSize = true;
-            this.TempetureLabel.Location = new System.Drawing.Point(85, 107);
-            this.TempetureLabel.Name = "TempetureLabel";
-            this.TempetureLabel.Size = new System.Drawing.Size(38, 15);
-            this.TempetureLabel.TabIndex = 6;
-            this.TempetureLabel.Text = "label6";
+            this.TemperatureLabel.AutoSize = true;
+            this.TemperatureLabel.Location = new System.Drawing.Point(85, 107);
+            this.TemperatureLabel.Name = "TemperatureLabel";
+            this.TemperatureLabel.Size = new System.Drawing.Size(38, 15);
+            this.TemperatureLabel.TabIndex = 6;
+            this.TemperatureLabel.Text = "label6";
             // 
             // AreaIdTextBox
             // 
@@ -126,7 +126,7 @@
             this.ClientSize = new System.Drawing.Size(307, 192);
             this.Controls.Add(this.LatestButton);
             this.Controls.Add(this.AreaIdTextBox);
-            this.Controls.Add(this.TempetureLabel);
+            this.Controls.Add(this.TemperatureLabel);
             this.Controls.Add(this.ConditionLabel);
             this.Controls.Add(this.DataDateLabel);
             this.Controls.Add(this.label4);
@@ -148,7 +148,7 @@
         private Label label4;
         private Label DataDateLabel;
         private Label ConditionLabel;
-        private Label TempetureLabel;
+        private Label TemperatureLabel;
         private TextBox AreaIdTextBox;
         private Button LatestButton;
     }
