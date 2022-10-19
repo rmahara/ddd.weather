@@ -18,7 +18,7 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return FloatHelper.RoundString(Value, DecimalPoint);
+                return Value.RoundString(DecimalPoint);
             }
         }
 
@@ -26,14 +26,14 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return FloatHelper.RoundString(Value, DecimalPoint) + UnitName;
+                return Value.RoundString(DecimalPoint) + UnitName;
             }
         }
         public string DisplayValueWithUnitSpace
         {
             get
             {
-                return FloatHelper.RoundString(Value, DecimalPoint) + " " + UnitName;
+                return Value.RoundString(DecimalPoint) + " " + UnitName;
             }
         }
 
