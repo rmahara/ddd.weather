@@ -1,5 +1,3 @@
-using DDD.WinForm.Common;
-using DDD.WinForm.Data;
 using DDD.WinForm.ViewModels;
 using System.Data;
 using System.Data.SQLite;
