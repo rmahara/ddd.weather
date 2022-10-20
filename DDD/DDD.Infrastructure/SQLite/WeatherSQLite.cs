@@ -26,7 +26,7 @@ limit 1
                     while (reader.Read()) 
                     {
                         return new WeatherEntity(
-                            Convert.ToInt32(reader["AreaId"]),
+                            Convert.ToInt32(areaId),
                             Convert.ToDateTime(reader["DataDate"]),
                             Convert.ToInt32(reader["Condition"]),
                             Convert.ToSingle(reader["Temperature"]));
