@@ -15,11 +15,12 @@ namespace DDD.WinForm.ViewModels
         {
         }
 
-        public WeatherLatestViewModel(IWeatherRepository weather,
-            IAreasRepository areasRepository)
+        public WeatherLatestViewModel(
+            IWeatherRepository weather,
+            IAreasRepository areas)
         {
             _weather = weather;
-            _areas = areasRepository;
+            _areas = areas;
 
             foreach (var area in _areas.GetData()) 
             {
@@ -27,12 +28,12 @@ namespace DDD.WinForm.ViewModels
             }
         }
 
-        private string _areaIdText = string.Empty;
-        public string AreaIdText {
-            get => _areaIdText;
+        private object _selectedAreaId;
+        public object SelectedAreaId {
+            get => _selectedAreaId;
             set 
             {
-                SetProperty(ref _areaIdText, value);
+                SetProperty(ref _selectedAreaId, value);
             } 
         }
         private string _dataDateText = string.Empty;
@@ -68,7 +69,7 @@ namespace DDD.WinForm.ViewModels
 
         public void Search()
         {
-            var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
+            var entity = _weather.GetLatest(Convert.ToInt32(_selectedAreaId));
             if (entity != null)
             {
                 DataDateText = entity.DataDate.ToString();
