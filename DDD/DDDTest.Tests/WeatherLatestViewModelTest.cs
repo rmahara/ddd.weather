@@ -1,6 +1,5 @@
 ﻿using DDD.Domain.Entities;
 using DDD.Domain.Repositories;
-using DDD.WinForm.Common;
 using DDD.WinForm.ViewModels;
 using System.Data;
 

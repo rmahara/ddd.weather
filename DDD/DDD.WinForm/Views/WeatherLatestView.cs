@@ -1,5 +1,6 @@
 using DDD.WinForm.Common;
 using DDD.WinForm.Data;
+using DDD.WinForm.ViewModels;
 using System.Data;
 using System.Data.SQLite;
 
@@ -7,7 +8,8 @@ namespace DDD.WinForm
 {
     public partial class WeatherLatestView : Form
     {
-        
+        private WeatherLatestViewModel _viewModel = new WeatherLatestViewModel();
+
         public WeatherLatestView()
         {
             InitializeComponent();
