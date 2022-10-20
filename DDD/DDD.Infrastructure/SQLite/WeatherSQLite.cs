@@ -15,25 +15,22 @@ where areaid = @areaid
 order by datadate desc
 limit 1
 ";
-            using (var connection = new SQLiteConnection(SQLiteHelper.ConnectionString))
-            using (var command = new SQLiteCommand(sql, connection))
-            {
-                connection.Open();
 
-                command.Parameters.AddWithValue("@areaid", areaId);
-                using (var reader = command.ExecuteReader())
+            return SQLiteHelper.QuerySingle<WeatherEntity>(
+                sql,
+                new List<SQLiteParameter> 
                 {
-                    while (reader.Read()) 
-                    {
-                        return new WeatherEntity(
+                    new SQLiteParameter("@areaid", areaId),
+
+                }.ToArray(),
+                reader =>
+                {
+                    return new WeatherEntity(
                             Convert.ToInt32(areaId),
                             Convert.ToDateTime(reader["DataDate"]),
                             Convert.ToInt32(reader["Condition"]),
                             Convert.ToSingle(reader["Temperature"]));
-                    }
-                }
-            }
-            return null;
+                }, null);
         }
     }
 }
