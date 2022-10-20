@@ -70,7 +70,13 @@ namespace DDD.WinForm.ViewModels
         public void Search()
         {
             var entity = _weather.GetLatest(Convert.ToInt32(_selectedAreaId));
-            if (entity != null)
+            if (entity == null)
+            {
+                DataDateText = String.Empty;
+                ConditionText = String.Empty;
+                TemperatureText = String.Empty;
+            }
+            else
             {
                 DataDateText = entity.DataDate.ToString();
                 ConditionText = entity.Condition.DisplayValue;
