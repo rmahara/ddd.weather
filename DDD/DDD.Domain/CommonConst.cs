@@ -8,7 +8,6 @@ namespace DDD.WinForm.Common
 {
     public static class CommonConst
     {
-        public const string ConnectionString = @"Data Source=C:\Users\09689\Desktop\DDD.db;Version=3";
-
+        public const string ConnectionString = @"Data Source=D:\@git\DDD\DDD\DDD.db;Version=3";
     }
 }
