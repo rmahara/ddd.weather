@@ -1,5 +1,6 @@
 ﻿using ChainingAssertion;
 using DDD.Domain.Entities;
+using DDD.Domain.Exceptions;
 using DDD.Domain.Repositories;
 using DDD.WinForm.ViewModels;
 using Moq;
@@ -30,6 +31,9 @@ namespace DDDTest.Tests
 
             viewModel.Areas.Count.Is(2);
             viewModel.Conditions.Count.Is(4);
+
+            var ex = ExceptionAssert.Throws<InputException>(() => viewModel.Save());
+            ex.Message.Is("エリアを選択してください");
         }
     }
 }
