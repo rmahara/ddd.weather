@@ -1,10 +1,14 @@
-﻿namespace DDD.WinForm.ViewModels
+﻿using DDD.Domain.ValueObjects;
+
+namespace DDD.WinForm.ViewModels
 {
     public class WeatherSaveViewModel : ViewModelBase
     {
         public WeatherSaveViewModel()
         {
-            DataDateValue = DateTime.Now;
+            DataDateValue = GetDateTime();
+            SelectedCondition = Condition.Sunny.Value;
+            TemperatureTest = string.Empty;
         }
 
         public object SelectedAreaId { get; set; }
