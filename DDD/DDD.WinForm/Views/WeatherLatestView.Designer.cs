@@ -38,6 +38,7 @@
             this.LatestButton = new System.Windows.Forms.Button();
             this.AreasComboBox = new System.Windows.Forms.ComboBox();
             this.ListButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -131,11 +132,22 @@
             this.ListButton.UseVisualStyleBackColor = true;
             this.ListButton.Click += new System.EventHandler(this.ListButton_Click);
             // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(115, 12);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(75, 23);
+            this.AddButton.TabIndex = 11;
+            this.AddButton.Text = "追加";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
             // WeatherLatestView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 192);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.ListButton);
             this.Controls.Add(this.AreasComboBox);
             this.Controls.Add(this.LatestButton);
@@ -166,5 +178,6 @@
         private Button LatestButton;
         private ComboBox AreasComboBox;
         private Button ListButton;
+        private Button AddButton;
     }
 }
