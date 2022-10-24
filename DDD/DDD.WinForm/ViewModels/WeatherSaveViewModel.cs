@@ -38,6 +38,9 @@ namespace DDD.WinForm.ViewModels
         public void Save()
         {
             Guard.IsNull(SelectedAreaId, "エリアを選択してください");
+            var temperature = 
+                Guard.IsFloat(TemperatureTest, "温度の入力に誤りがあります");
+            
         }
     }
 }
