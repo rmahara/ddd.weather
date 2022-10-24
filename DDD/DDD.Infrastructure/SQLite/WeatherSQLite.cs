@@ -52,5 +52,10 @@ limit 1
                             Convert.ToSingle(reader["Temperature"]));
                 }, null);
         }
+
+        public void Save(WeatherEntity weather)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
