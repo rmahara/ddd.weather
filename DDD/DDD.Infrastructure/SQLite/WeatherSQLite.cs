@@ -55,7 +55,28 @@ limit 1
 
         public void Save(WeatherEntity weather)
         {
-            throw new NotImplementedException();
+            string insert = @"
+insert into weather
+(areaid, datadate, condition, temperature)
+values
+(@areaid, @datadate, @condition, @temperature);
+";
+            string update = @"
+update weather set
+  condition = @condition
+, temperature = @temperature
+where areaid = @areaid
+and datadate = @datadate;
+";
+            var args = new List<SQLiteParameter>()
+            {
+                new SQLiteParameter("@areaid", weather.AreaId.Value),
+                new SQLiteParameter("@datadate", weather.DataDate),
+                new SQLiteParameter("@condition", weather.Condition.Value),
+                new SQLiteParameter("@temperature", weather.Temperature.Value),
+            };
+
+            SQLiteHelper.Execute(insert, update, args.ToArray());
         }
     }
 }
