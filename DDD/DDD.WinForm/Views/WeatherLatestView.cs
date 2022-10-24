@@ -1,5 +1,6 @@
 using DDD.Domain.Entities;
 using DDD.WinForm.ViewModels;
+using DDD.WinForm.Views;
 using System.Data;
 using System.Data.SQLite;
 
@@ -32,6 +33,14 @@ namespace DDD.WinForm
         private void LatestButton_Click(object sender, EventArgs e)
         {
             _viewModel.Search();
+        }
+
+        private void ListButton_Click(object sender, EventArgs e)
+        {
+            using (var f = new WeatherListView()) 
+            {
+                f.ShowDialog();
+            }
         }
     }
 }

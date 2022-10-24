@@ -37,12 +37,13 @@
             this.TemperatureLabel = new System.Windows.Forms.Label();
             this.LatestButton = new System.Windows.Forms.Button();
             this.AreasComboBox = new System.Windows.Forms.ComboBox();
+            this.ListButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 20);
+            this.label1.Location = new System.Drawing.Point(28, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 0;
@@ -51,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 49);
+            this.label2.Location = new System.Drawing.Point(28, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 15);
             this.label2.TabIndex = 1;
@@ -60,7 +61,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 78);
+            this.label3.Location = new System.Drawing.Point(28, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 15);
             this.label3.TabIndex = 2;
@@ -69,7 +70,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 107);
+            this.label4.Location = new System.Drawing.Point(28, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 15);
             this.label4.TabIndex = 3;
@@ -78,7 +79,7 @@
             // DataDateLabel
             // 
             this.DataDateLabel.AutoSize = true;
-            this.DataDateLabel.Location = new System.Drawing.Point(85, 49);
+            this.DataDateLabel.Location = new System.Drawing.Point(90, 96);
             this.DataDateLabel.Name = "DataDateLabel";
             this.DataDateLabel.Size = new System.Drawing.Size(38, 15);
             this.DataDateLabel.TabIndex = 4;
@@ -87,7 +88,7 @@
             // ConditionLabel
             // 
             this.ConditionLabel.AutoSize = true;
-            this.ConditionLabel.Location = new System.Drawing.Point(85, 78);
+            this.ConditionLabel.Location = new System.Drawing.Point(90, 125);
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(38, 15);
             this.ConditionLabel.TabIndex = 5;
@@ -96,7 +97,7 @@
             // TemperatureLabel
             // 
             this.TemperatureLabel.AutoSize = true;
-            this.TemperatureLabel.Location = new System.Drawing.Point(85, 107);
+            this.TemperatureLabel.Location = new System.Drawing.Point(90, 154);
             this.TemperatureLabel.Name = "TemperatureLabel";
             this.TemperatureLabel.Size = new System.Drawing.Size(38, 15);
             this.TemperatureLabel.TabIndex = 6;
@@ -104,7 +105,7 @@
             // 
             // LatestButton
             // 
-            this.LatestButton.Location = new System.Drawing.Point(191, 17);
+            this.LatestButton.Location = new System.Drawing.Point(196, 64);
             this.LatestButton.Name = "LatestButton";
             this.LatestButton.Size = new System.Drawing.Size(75, 23);
             this.LatestButton.TabIndex = 8;
@@ -115,16 +116,27 @@
             // AreasComboBox
             // 
             this.AreasComboBox.FormattingEnabled = true;
-            this.AreasComboBox.Location = new System.Drawing.Point(85, 17);
+            this.AreasComboBox.Location = new System.Drawing.Point(90, 64);
             this.AreasComboBox.Name = "AreasComboBox";
             this.AreasComboBox.Size = new System.Drawing.Size(100, 23);
             this.AreasComboBox.TabIndex = 9;
+            // 
+            // ListButton
+            // 
+            this.ListButton.Location = new System.Drawing.Point(28, 12);
+            this.ListButton.Name = "ListButton";
+            this.ListButton.Size = new System.Drawing.Size(75, 23);
+            this.ListButton.TabIndex = 10;
+            this.ListButton.Text = "リスト";
+            this.ListButton.UseVisualStyleBackColor = true;
+            this.ListButton.Click += new System.EventHandler(this.ListButton_Click);
             // 
             // WeatherLatestView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 192);
+            this.Controls.Add(this.ListButton);
             this.Controls.Add(this.AreasComboBox);
             this.Controls.Add(this.LatestButton);
             this.Controls.Add(this.TemperatureLabel);
@@ -135,6 +147,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "WeatherLatestView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WeatherLatestView";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,5 +165,6 @@
         private Label TemperatureLabel;
         private Button LatestButton;
         private ComboBox AreasComboBox;
+        private Button ListButton;
     }
 }
