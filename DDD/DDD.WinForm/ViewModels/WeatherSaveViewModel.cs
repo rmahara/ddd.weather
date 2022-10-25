@@ -14,7 +14,7 @@ namespace DDD.WinForm.ViewModels
         private IAreasRepository _areas;
 
         public WeatherSaveViewModel()
-            : this(new WeatherSQLite(), new AreasSQLite()) 
+            : this(new WeatherSQLite(), new AreasSQLite())
         {
         }
 
@@ -39,12 +39,17 @@ namespace DDD.WinForm.ViewModels
         public DateTime DataDateValue { get; set; }
         public object SelectedCondition { get; set; }
         public string TemperatureTest { get; set; }
-        
+
         public BindingList<AreaEntity> Areas { get; set; }
             = new BindingList<AreaEntity>();
         public BindingList<Condition> Conditions { get; set; }
             = new BindingList<Condition>(Condition.ToList());
         public string TemperatureUnitName => Temperature.UnitName;
+
+        public async Task SaveAsync()
+        {
+            await Task.Run(() => Save());
+        }
 
         public void Save()
         {

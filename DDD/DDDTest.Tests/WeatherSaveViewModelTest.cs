@@ -11,7 +11,7 @@ namespace DDDTest.Tests
     public class WeatherSaveViewModelTest
     {
         [TestMethod]
-        public void 天気登録シナリオ() 
+        public async Task 天気登録シナリオ() 
         {
             var weatherMock = new Mock<IWeatherRepository>();
             var areasMock = new Mock<IAreasRepository>();
@@ -34,11 +34,11 @@ namespace DDDTest.Tests
             viewModel.Areas.Count.Is(2);
             viewModel.Conditions.Count.Is(4);
 
-            var ex = ExceptionAssert.Throws<InputException>(() => viewModel.Save());
+            var ex = await ExceptionAssert.ThrowsAsync<InputException>(() => viewModel.SaveAsync());
             ex.Message.Is("エリアを選択してください");
 
             viewModel.SelectedAreaId = 2;
-            ex = ExceptionAssert.Throws<InputException>(() => viewModel.Save());
+            ex = await ExceptionAssert.ThrowsAsync<InputException>(() => viewModel.SaveAsync());
             ex.Message.Is("温度の入力に誤りがあります");
 
             viewModel.TemperatureTest = "12.345";
@@ -51,7 +51,7 @@ namespace DDDTest.Tests
                     saveValue.Temperature.Value.Is(12.345f);
                 });
 
-            viewModel.Save();
+            await viewModel.SaveAsync();
             //Save系のテストをする際は必ずVerifyAllを入れる
             weatherMock.VerifyAll();
         }
