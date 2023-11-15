@@ -4,7 +4,7 @@ namespace DDD.Infrastructure.SQLite
 {
     internal class SQLiteHelper
     {
-        internal const string ConnectionString = @"Data Source=D:\@git\DDD\DDD\DDD.db;Version=3";
+        internal const string ConnectionString = @"Data Source=DDD.db;Version=3";
 
         internal static IReadOnlyList<T> Query<T>(
             string sql,
