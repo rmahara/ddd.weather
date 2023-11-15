@@ -1,21 +1,24 @@
-﻿namespace DDD.Domain.ValueObjects
+﻿using System;
+
+namespace DDD.Domain.ValueObjects
 {
     public sealed class AreaId : ValueObject<AreaId>
     {
         public AreaId(int value)
         {
-            this.Value = value;
+            Value = value;
         }
+
         public int Value { get; }
 
-        protected override bool EquelsCore(AreaId other)
+        protected override bool EqualsCore(AreaId other)
         {
             return Value == other.Value;
         }
 
-        public string DisplayValue 
+        public string DisplayValue
         {
-            get 
+            get
             {
                 return Value.ToString().PadLeft(4, '0');
             }

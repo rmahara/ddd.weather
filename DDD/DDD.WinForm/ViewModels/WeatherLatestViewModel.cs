@@ -1,6 +1,7 @@
 ﻿using DDD.Domain.Entities;
 using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
+using System;
 using System.ComponentModel;
 
 namespace DDD.WinForm.ViewModels
@@ -8,9 +9,9 @@ namespace DDD.WinForm.ViewModels
     public class WeatherLatestViewModel : ViewModelBase
     {
         private IWeatherRepository _weather;
-        private IAreasRepository _areas;
+        IAreasRepository _areas;
 
-        public WeatherLatestViewModel() 
+        public WeatherLatestViewModel()
             : this(new WeatherSQLite(), new AreasSQLite())
         {
         }
@@ -22,42 +23,46 @@ namespace DDD.WinForm.ViewModels
             _weather = weather;
             _areas = areas;
 
-            foreach (var area in _areas.GetData()) 
+            foreach(var area in _areas.GetData())
             {
                 Areas.Add(new AreaEntity(area.AreaId, area.AreaName));
             }
         }
 
-        private object _selectedAreaId;
-        public object SelectedAreaId {
-            get => _selectedAreaId;
-            set 
+        private object _selectedAredId;
+        public object SelectedAreaId
+        {
+            get { return _selectedAredId; }
+            set
             {
-                SetProperty(ref _selectedAreaId, value);
-            } 
+                SetProperty(ref _selectedAredId, value);
+            }
         }
+
         private string _dataDateText = string.Empty;
         public string DataDateText
         {
-            get => _dataDateText;
+            get { return _dataDateText; }
             set
             {
                 SetProperty(ref _dataDateText, value);
             }
         }
+
         private string _conditionText = string.Empty;
         public string ConditionText
         {
-            get => _conditionText;
+            get { return _conditionText; }
             set
             {
                 SetProperty(ref _conditionText, value);
             }
         }
+
         private string _temperatureText = string.Empty;
         public string TemperatureText
         {
-            get => _temperatureText;
+            get { return _temperatureText; }
             set
             {
                 SetProperty(ref _temperatureText, value);
@@ -65,16 +70,16 @@ namespace DDD.WinForm.ViewModels
         }
 
         public BindingList<AreaEntity> Areas { get; set; }
-            = new BindingList<AreaEntity>();
+        = new BindingList<AreaEntity>();
 
         public void Search()
         {
-            var entity = _weather.GetLatest(Convert.ToInt32(_selectedAreaId));
+            var entity = _weather.GetLatest(Convert.ToInt32(_selectedAredId));
             if (entity == null)
             {
-                DataDateText = String.Empty;
-                ConditionText = String.Empty;
-                TemperatureText = String.Empty;
+                DataDateText = string.Empty;
+                ConditionText = string.Empty;
+                TemperatureText = string.Empty;
             }
             else
             {

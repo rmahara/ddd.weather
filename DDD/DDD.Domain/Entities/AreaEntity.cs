@@ -2,7 +2,7 @@
 {
     public sealed class AreaEntity
     {
-        public AreaEntity(int areaId, string areaName)
+        public AreaEntity(int areaId,string areaName)
         {
             AreaId = areaId;
             AreaName = areaName;

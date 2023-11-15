@@ -4,30 +4,31 @@ using DDD.Domain.Helpers;
 using DDD.Domain.Repositories;
 using DDD.Domain.ValueObjects;
 using DDD.Infrastructure.SQLite;
+using System;
 using System.ComponentModel;
 
 namespace DDD.WinForm.ViewModels
 {
     public class WeatherSaveViewModel : ViewModelBase
     {
-        private IWeatherRepository _weather;
+        private IWeatherRepository _wather;
         private IAreasRepository _areas;
 
         public WeatherSaveViewModel()
-            : this(new WeatherSQLite(), new AreasSQLite())
+            :this(new WeatherSQLite(),new AreasSQLite())
         {
         }
 
         public WeatherSaveViewModel(
-            IWeatherRepository weather,
+            IWeatherRepository wather,
             IAreasRepository areas)
         {
-            _weather = weather;
+            _wather = wather;
             _areas = areas;
-
+           
             DataDateValue = GetDateTime();
             SelectedCondition = Condition.Sunny.Value;
-            TemperatureTest = string.Empty;
+            TemperatureText = string.Empty;
 
             foreach (var area in _areas.GetData())
             {
@@ -38,33 +39,28 @@ namespace DDD.WinForm.ViewModels
         public object SelectedAreaId { get; set; }
         public DateTime DataDateValue { get; set; }
         public object SelectedCondition { get; set; }
-        public string TemperatureTest { get; set; }
+        public string TemperatureText { get; set; }
 
         public BindingList<AreaEntity> Areas { get; set; }
-            = new BindingList<AreaEntity>();
-        public BindingList<Condition> Conditions { get; set; }
-            = new BindingList<Condition>(Condition.ToList());
-        public string TemperatureUnitName => Temperature.UnitName;
+        = new BindingList<AreaEntity>();
 
-        public async Task SaveAsync()
-        {
-            await Task.Run(() => Save());
-        }
+        public BindingList<Condition> Conditions { get; set; }
+        = new BindingList<Condition>(Condition.ToList());
+        public string TemperatureUnitName => Temperature.UnitName;
 
         public void Save()
         {
             Guard.IsNull(SelectedAreaId, "エリアを選択してください");
-            var temperature = 
-                Guard.IsFloat(TemperatureTest, "温度の入力に誤りがあります");
+            var temperature =
+                Guard.IsFloat(TemperatureText, "温度の入力に誤りがあります");
 
             var entity = new WeatherEntity(
-                    Convert.ToInt32(SelectedAreaId),
-                    DataDateValue,
-                    Convert.ToInt32(SelectedCondition),
-                    temperature
-                );
+                Convert.ToInt32(SelectedAreaId),
+                DataDateValue,
+                Convert.ToInt32(SelectedCondition),
+                temperature);
 
-            _weather.Save(entity);
+            _wather.Save(entity);
         }
     }
 }

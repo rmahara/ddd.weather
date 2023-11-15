@@ -2,20 +2,13 @@
 using DDD.Domain.ValueObjects;
 using DDD.WinForm.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DDD.WinForm.Views
 {
     public partial class WeatherSaveView : Form
     {
-        private WeatherSaveViewModel _viewModel
+        private WeatherSaveViewModel _viewModel 
             = new WeatherSaveViewModel();
         public WeatherSaveView()
         {
@@ -29,7 +22,8 @@ namespace DDD.WinForm.Views
             this.AreaIdComboBox.ValueMember = nameof(AreaEntity.AreaId);
             this.AreaIdComboBox.DisplayMember = nameof(AreaEntity.AreaName);
 
-            DataDateTextBox.DataBindings.Add("Value", _viewModel, nameof(_viewModel.DataDateValue));
+            DateTimeTextBox.DataBindings.Add(
+                "Value", _viewModel, nameof(_viewModel.DataDateValue));
 
             this.ConditionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ConditionComboBox.DataBindings.Add(
@@ -40,21 +34,22 @@ namespace DDD.WinForm.Views
             this.ConditionComboBox.DisplayMember = nameof(Condition.DisplayValue);
 
             TemperatureTextBox.DataBindings.Add(
-                "Text", _viewModel, nameof(_viewModel.TemperatureTest));
-            UnitLabel.DataBindings.Add(
-                "Text", _viewModel, nameof(_viewModel.TemperatureUnitName));
+                "Text", _viewModel, nameof(_viewModel.TemperatureText));
 
-            SaveButton.Click += (_, __) => 
-            {
-                try
-                {
-                    _viewModel.Save();
-                }
-                catch (Exception ex) 
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            };
+            UnitLabel.DataBindings.Add(
+             "Text", _viewModel, nameof(_viewModel.TemperatureUnitName));
+
+            SaveButton.Click += (_, __) =>
+             {
+                 try
+                 {
+                     _viewModel.Save();
+                 }
+                 catch(Exception ex)
+                 {
+                     MessageBox.Show(ex.Message);
+                 }
+             };
         }
     }
 }

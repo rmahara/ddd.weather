@@ -13,7 +13,8 @@ namespace DDD.WinForm.ViewModels
     {
         private IWeatherRepository _weather;
 
-        public WeatherListViewModel() :this(new WeatherSQLite())
+        public WeatherListViewModel()
+            :this(new WeatherSQLite())
         {
         }
 
@@ -21,14 +22,15 @@ namespace DDD.WinForm.ViewModels
         {
             _weather = weather;
 
-            foreach (var entity in _weather.GetData()) 
+            foreach(var entity in _weather.GetData())
             {
                 Weathers.Add(new WeatherListViewModelWeather(entity));
             }
         }
 
-        public BindingList<WeatherListViewModelWeather> Weathers { get; set; }
+        public BindingList<WeatherListViewModelWeather>
+            Weathers
+        { get; set; }
             = new BindingList<WeatherListViewModelWeather>();
-
     }
 }

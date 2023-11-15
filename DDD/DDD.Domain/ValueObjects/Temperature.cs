@@ -6,14 +6,13 @@ namespace DDD.Domain.ValueObjects
     {
         public const string UnitName = "℃";
         public const int DecimalPoint = 2;
-        
+
         public Temperature(float value)
         {
             Value = value;
         }
-        
-        public float Value { get; }
 
+        public float Value { get; }
         public string DisplayValue
         {
             get
@@ -29,15 +28,17 @@ namespace DDD.Domain.ValueObjects
                 return Value.RoundString(DecimalPoint) + UnitName;
             }
         }
+
         public string DisplayValueWithUnitSpace
         {
             get
             {
-                return Value.RoundString(DecimalPoint) + " " + UnitName;
+                return Value.RoundString(DecimalPoint)
+                    + " "+ UnitName;
             }
         }
 
-        protected override bool EquelsCore(Temperature other)
+        protected override bool EqualsCore(Temperature other)
         {
             return Value == other.Value;
         }

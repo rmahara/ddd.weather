@@ -1,5 +1,5 @@
 ﻿using DDD.Domain.ValueObjects;
-using System.Data;
+using System;
 
 namespace DDD.Domain.Entities
 {
@@ -7,18 +7,18 @@ namespace DDD.Domain.Entities
     {
         //完全コンストラクタパターン
         public WeatherEntity(int areaId,
-            DateTime dataDate,
-            int condition,
-            float temperature)
-            :this(areaId,string.Empty, dataDate,condition,temperature)
+                             DateTime dataDate,
+                             int condition,
+                             float temperature)
+            : this(areaId, string.Empty, dataDate, condition, temperature)
         {
-
         }
+
         public WeatherEntity(int areaId,
-            string areaName,
-            DateTime dataDate,
-            int condition,
-            float temperature)
+                           string areaName,
+                           DateTime dataDate,
+                           int condition,
+                           float temperature)
         {
             AreaId = new AreaId(areaId);
             AreaName = areaName;
@@ -33,36 +33,31 @@ namespace DDD.Domain.Entities
         public Condition Condition { get; }
         public Temperature Temperature { get; }
 
-        public bool IsMousho() 
+        public bool IsMousho()
         {
-            // 区分で == 1 で比較するのは非常に悪い実装
-            if (Condition == Condition.Sunny) 
+            if (Condition == Condition.Sunny)
             {
-                if (Temperature.Value > 30)
+                if(Temperature.Value > 30)
                 {
                     return true;
                 }
             }
+
             return false;
         }
 
-        public bool IsOK() 
+
+        public bool IsOK()
         {
-            if (DataDate < DateTime.Now.AddMonths(-1)) 
+            if (DataDate < DateTime.Now.AddMonths(-1))
             {
-                if (Temperature.Value < 10) 
+                if (Temperature.Value < 10)
                 {
                     return false;
                 }
             }
 
             return true;
-        }
-
-        public enum Mode 
-        {
-            Auto = 1,
-            None = 2,
         }
     }
 }

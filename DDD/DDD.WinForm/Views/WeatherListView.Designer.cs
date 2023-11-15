@@ -38,18 +38,17 @@
             this.WeathersDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WeathersDataGrid.Location = new System.Drawing.Point(0, 0);
             this.WeathersDataGrid.Name = "WeathersDataGrid";
-            this.WeathersDataGrid.RowTemplate.Height = 25;
-            this.WeathersDataGrid.Size = new System.Drawing.Size(835, 422);
+            this.WeathersDataGrid.RowTemplate.Height = 21;
+            this.WeathersDataGrid.Size = new System.Drawing.Size(537, 301);
             this.WeathersDataGrid.TabIndex = 0;
             // 
             // WeatherListView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 422);
+            this.ClientSize = new System.Drawing.Size(537, 301);
             this.Controls.Add(this.WeathersDataGrid);
             this.Name = "WeatherListView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WeatherListView";
             ((System.ComponentModel.ISupportInitialize)(this.WeathersDataGrid)).EndInit();
             this.ResumeLayout(false);
@@ -58,6 +57,6 @@
 
         #endregion
 
-        private DataGridView WeathersDataGrid;
+        private System.Windows.Forms.DataGridView WeathersDataGrid;
     }
 }

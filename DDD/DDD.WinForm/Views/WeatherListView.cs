@@ -1,4 +1,5 @@
 ﻿using DDD.WinForm.ViewModels;
+using System.Windows.Forms;
 
 namespace DDD.WinForm.Views
 {

@@ -1,4 +1,6 @@
-﻿namespace DDD.Domain.Helpers
+﻿using System;
+
+namespace DDD.Domain.Helpers
 {
     public static class FloatHelper
     {

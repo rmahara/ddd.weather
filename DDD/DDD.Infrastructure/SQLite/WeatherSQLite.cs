@@ -1,79 +1,90 @@
 ﻿using DDD.Domain.Entities;
 using DDD.Domain.Repositories;
-using DDD.Domain.ValueObjects;
+using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace DDD.Infrastructure.SQLite
 {
-    public class WeatherSQLite : IWeatherRepository
+    public  class WeatherSQLite : IWeatherRepository
     {
+     
+        public  WeatherEntity GetLatest(int areaId)
+        {
+            string sql = @"
+select DataDate,
+       Condition,
+       Temperature
+from Weather
+where AreaId = @AreaId
+order by DataDate desc
+LIMIT 1
+";
+            return SQLiteHelper.QuerySingle(
+                sql,
+                new List<SQLiteParameter>
+                {
+                    new SQLiteParameter("@AreaID",areaId)
+                }.ToArray(),
+                reader => 
+                {
+                    return new WeatherEntity(
+                            areaId,
+                            Convert.ToDateTime(reader["DataDate"]),
+                            Convert.ToInt32(reader["Condition"]),
+                            Convert.ToSingle(reader["Temperature"]));
+                },
+                null);
+        }
+
         public IReadOnlyList<WeatherEntity> GetData()
         {
             string sql = @"
-select A.areaId, ifnull(B.areaName, '') as areaName, A.dataDate, A.condition, A.temperature
+select A.AreaId,
+         ifnull(B.AreaName,'') as AreaName,
+         A.DataDate,
+         A.Condition,
+         A.Temperature
 from Weather A
 left outer join Areas B
-on A.areaId = B.areaId
+on A.AreaId = B.AreaId
 ";
+
             return SQLiteHelper.Query(sql,
-                reader => {
-                    return new WeatherEntity(
-                            Convert.ToInt32(reader["areaid"]),
-                            Convert.ToString(reader["areaName"]),
-                            Convert.ToDateTime(reader["DataDate"]),
-                            Convert.ToInt32(reader["Condition"]),
-                            Convert.ToSingle(reader["Temperature"]));
-                });
-        }
-
-        public WeatherEntity GetLatest(int areaId) 
-        {
-            string sql = @"
-select datadate, condition, temperature
-from Weather
-where areaid = @areaid
-order by datadate desc
-limit 1
-";
-
-            return SQLiteHelper.QuerySingle<WeatherEntity>(
-                sql,
-                new List<SQLiteParameter> 
-                {
-                    new SQLiteParameter("@areaid", areaId),
-
-                }.ToArray(),
                 reader =>
                 {
                     return new WeatherEntity(
-                            Convert.ToInt32(areaId),
-                            Convert.ToDateTime(reader["DataDate"]),
-                            Convert.ToInt32(reader["Condition"]),
-                            Convert.ToSingle(reader["Temperature"]));
-                }, null);
+                           Convert.ToInt32(reader["AreaId"]),
+                           Convert.ToString(reader["AreaName"]),
+                           Convert.ToDateTime(reader["DataDate"]),
+                           Convert.ToInt32(reader["Condition"]),
+                           Convert.ToSingle(reader["Temperature"]));
+                });
         }
 
         public void Save(WeatherEntity weather)
         {
             string insert = @"
-insert into weather
-(areaid, datadate, condition, temperature)
+insert into Weather
+(AreaId,DataDate,Condition,Temperature)
 values
-(@areaid, @datadate, @condition, @temperature);
+(@AreaId,@DataDate,@Condition,@Temperature)
 ";
+
             string update = @"
-update weather set
-  condition = @condition
-, temperature = @temperature
-where areaid = @areaid
-and datadate = @datadate;
+update Weather
+set Condition = @Condition,
+    Temperature = @Temperature
+where AreaId = @AreaId
+and DataDate = @DataDate
 ";
-            var args = new List<SQLiteParameter>()
+
+            var args = new List<SQLiteParameter>
             {
-                new SQLiteParameter("@areaid", weather.AreaId.Value),
-                new SQLiteParameter("@datadate", weather.DataDate),
-                new SQLiteParameter("@condition", weather.Condition.Value),
-                new SQLiteParameter("@temperature", weather.Temperature.Value),
+                new SQLiteParameter("@AreaId",weather.AreaId.Value),
+                new SQLiteParameter("@DataDate",weather.DataDate),
+                new SQLiteParameter("@Condition",weather.Condition.Value),
+                new SQLiteParameter("@Temperature",weather.Temperature.Value),
             };
 
             SQLiteHelper.Execute(insert, update, args.ToArray());
